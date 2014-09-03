@@ -1,0 +1,9 @@
+2014-09-03 10:43:04 Error: [MissingControllerException] Controller class ExpertiseController could not be found.
+Exception Attributes: array (
+  'class' => 'ExpertiseController',
+  'plugin' => NULL,
+)
+Request URL: /vcp/expertise
+Stack Trace:
+#0 D:\xampp\htdocs\vcp\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
