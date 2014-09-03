@@ -1,4 +1,5 @@
-<div class="expertises index">
+<div class="row">
+<div class="large-9 columns expertises index">
 	<h2><?php echo __('Expertises'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -36,9 +37,10 @@
 	?>
 	</div>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Expertise'), array('action' => 'add')); ?></li>
 	</ul>
+</div>
 </div>

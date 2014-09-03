@@ -1,4 +1,5 @@
-<div class="agents view">
+<div class="row">
+<div class="large-9 columns agents view">
 <h2><?php echo __('Agent'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -23,7 +24,7 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Agent'), array('action' => 'edit', $agent['Agent']['id'])); ?> </li>
@@ -35,6 +36,7 @@
 		<li><?php echo $this->Html->link(__('List Chats'), array('controller' => 'chats', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Chat'), array('controller' => 'chats', 'action' => 'add')); ?> </li>
 	</ul>
+</div>
 </div>
 <div class="related">
 	<h3><?php echo __('Related Agent Expertises'); ?></h3>

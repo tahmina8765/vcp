@@ -1,4 +1,5 @@
-<div class="chats view">
+<div class="row">
+<div class="large-9 columns chats view">
 <h2><?php echo __('Chat'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -33,7 +34,7 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Chat'), array('action' => 'edit', $chat['Chat']['id'])); ?> </li>
@@ -43,4 +44,5 @@
 		<li><?php echo $this->Html->link(__('List Agents'), array('controller' => 'agents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Agent'), array('controller' => 'agents', 'action' => 'add')); ?> </li>
 	</ul>
+</div>
 </div>

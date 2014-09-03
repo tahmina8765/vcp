@@ -1,4 +1,5 @@
-<div class="agents form">
+<div class="row">
+<div class="large-9 columns agents form">
 <?php echo $this->Form->create('Agent'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Agent'); ?></legend>
@@ -11,7 +12,7 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
@@ -22,4 +23,5 @@
 		<li><?php echo $this->Html->link(__('List Chats'), array('controller' => 'chats', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Chat'), array('controller' => 'chats', 'action' => 'add')); ?> </li>
 	</ul>
+</div>
 </div>

@@ -1,4 +1,5 @@
-<div class="agents index">
+<div class="row">
+<div class="large-9 columns agents index">
 	<h2><?php echo __('Agents'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -40,7 +41,7 @@
 	?>
 	</div>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Agent'), array('action' => 'add')); ?></li>
@@ -49,4 +50,5 @@
 		<li><?php echo $this->Html->link(__('List Chats'), array('controller' => 'chats', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Chat'), array('controller' => 'chats', 'action' => 'add')); ?> </li>
 	</ul>
+</div>
 </div>

@@ -1,4 +1,5 @@
-<div class="expertises view">
+<div class="row">
+<div class="large-9 columns expertises view">
 <h2><?php echo __('Expertise'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -13,7 +14,7 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
+<div class="large-3 columns actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Expertise'), array('action' => 'edit', $expertise['Expertise']['id'])); ?> </li>
@@ -21,4 +22,5 @@
 		<li><?php echo $this->Html->link(__('List Expertises'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Expertise'), array('action' => 'add')); ?> </li>
 	</ul>
+</div>
 </div>

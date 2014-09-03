@@ -1,11 +1,11 @@
 <?php
-App::uses('ChatsController', 'Controller');
+App::uses('AgentExpertisesController', 'Controller');
 
 /**
- * ChatsController Test Case
+ * AgentExpertisesController Test Case
  *
  */
-class ChatsControllerTest extends ControllerTestCase {
+class AgentExpertisesControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,9 @@ class ChatsControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.chat',
-		'app.agent',
 		'app.agent_expertise',
+		'app.agent',
+		'app.chat',
 		'app.expertise'
 	);
 

@@ -15,6 +15,7 @@ class AgentsControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.agent',
 		'app.agent_expertise',
+		'app.expertise',
 		'app.chat'
 	);
 
