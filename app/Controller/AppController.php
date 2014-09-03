@@ -20,7 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
-
+App::path('Vendor');
 /**
  * Application Controller
  *

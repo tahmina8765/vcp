@@ -50,7 +50,6 @@ Cache::config('default', array('engine' => 'File'));
  * ));
  *
  */
-
 /**
  * Custom Inflector rules can be set to correctly pluralize or singularize table, model, controller names or whatever other
  * string is passed to the inflection functions
@@ -106,3 +105,5 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+App::import('Vendor', array('file' => 'autoload'));
