@@ -28,7 +28,7 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->script('vendor/jquery.js');
         echo $this->Html->script('foundation.min.js');
         echo $this->Html->script('foundation/foundation.alert.js');
-        
+
         echo $this->fetch('meta');
         echo $this->fetch('css');
         echo $this->fetch('script');
@@ -36,6 +36,7 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script>
             $(document).foundation();
         </script>
+        <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" type="text/javascript" charset="utf-8"></script>        
     </head>
     <body>
         <div id="container">

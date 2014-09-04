@@ -25,30 +25,8 @@ class ChatsController extends AppController
      */
     public function index()
     {
-        $apiKey    = '44966052';
-        $apiSecret = '5e77f7d37adc91cade6dd1ee3d1016d715c42d18';
-        $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
-        // Create a session that attempts to use peer-to-peer streaming:
-        $session   = $openTok->createSession();
-// A session with a location hint:
-//        $session = $openTok->createSession(array('location' => '127.0.0.1'));
-// Store this sessionId in the database for later use
-        echo $sessionId = $session->getSessionId();
-        echo "<br>";
-
-        // Generate a Token from just a sessionId (fetched from a database)
-        echo $token = $openTok->generateToken($sessionId);
-// Generate a Token by calling the method on the Session (returned from createSession)
-//$token = $session->generateToken();
-// Set some options in a token
-//$token = $session->generateToken(array(
-//    'role'       => Role::MODERATOR,
-//    'expireTime' => time()+(7 * 24 * 60 * 60) // in one week
-//    'data'       => 'name=Johnny'
-//));
 
 
-        $opentok               = new OpenTok\OpenTok($apiKey, $apiSecret);
         $this->Chat->recursive = 0;
         $this->set('chats', $this->Paginator->paginate());
     }
@@ -61,6 +39,21 @@ class ChatsController extends AppController
      * @return void
      */
     public function view($id = null)
+    {
+        if (!$this->Chat->exists($id)) {
+            throw new NotFoundException(__('Invalid chat'));
+        }
+        $options = array('conditions' => array('Chat.' . $this->Chat->primaryKey => $id));
+        $this->set('chat', $this->Chat->find('first', $options));
+    }
+    /**
+     * watch method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function watch($id = null)
     {
         if (!$this->Chat->exists($id)) {
             throw new NotFoundException(__('Invalid chat'));
@@ -138,7 +131,6 @@ class ChatsController extends AppController
         return $this->redirect(array('action' => 'index'));
     }
 
-    
     /**
      * start method
      *
@@ -148,9 +140,21 @@ class ChatsController extends AppController
     {
         if ($this->request->is('post')) {
             $this->Chat->create();
+
+            $apiKey    = '44966052';
+            $apiSecret = '5e77f7d37adc91cade6dd1ee3d1016d715c42d18';
+            $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
+            // Create a session that attempts to use peer-to-peer streaming:
+            $session   = $openTok->createSession();
+            $sessionId = $session->getSessionId();
+            $token     = $openTok->generateToken($sessionId);
+            $this->request->data['Chat']['sessionid'] = $sessionId;
+            $this->request->data['Chat']['token'] = $token;
+            //debug($this->request->data);
+            
             if ($this->Chat->save($this->request->data)) {
                 $this->Session->setFlash(__('The chat has been saved.'), 'success');
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'create'));
             } else {
                 $this->Session->setFlash(__('The chat could not be saved. Please, try again.'), 'error');
             }
