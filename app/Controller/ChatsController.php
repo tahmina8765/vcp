@@ -151,7 +151,6 @@ class ChatsController extends AppController
             $this->request->data['Chat']['sessionid'] = $sessionId;
             $this->request->data['Chat']['token'] = $token;
             //debug($this->request->data);
-            
             if ($this->Chat->save($this->request->data)) {
                 $id = $this->Chat->getLastInsertId();
                 $this->Session->setFlash(__('The chat has been saved.'), 'success');

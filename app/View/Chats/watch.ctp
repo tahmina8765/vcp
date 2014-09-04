@@ -13,12 +13,12 @@
     function sessionConnectedHandler(event) {
         console.log("connected");
         subscribeToStreams(event.streams);
-//        session.publish();
+        session.publish();
     }
 
     function streamCreatedHandler(event) {
         console.log("created");
-//        subscribeToStreams(event.streams);
+        subscribeToStreams(event.streams);
     }
 
     function subscribeToStreams(streams) {
