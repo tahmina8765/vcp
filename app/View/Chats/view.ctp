@@ -20,7 +20,6 @@
         console.log("created");
         subscribeToStreams(event.streams);
     }
-
     function subscribeToStreams(streams) {
         for (var i = 0; i < streams.length; i++) {
             var stream = streams[i];
