@@ -153,8 +153,9 @@ class ChatsController extends AppController
             //debug($this->request->data);
             
             if ($this->Chat->save($this->request->data)) {
+                $id = $this->Chat->getLastInsertId();
                 $this->Session->setFlash(__('The chat has been saved.'), 'success');
-                return $this->redirect(array('action' => 'create'));
+                return $this->redirect(array('action' => 'view', $id));
             } else {
                 $this->Session->setFlash(__('The chat could not be saved. Please, try again.'), 'error');
             }
