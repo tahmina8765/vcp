@@ -138,4 +138,22 @@ class ChatsController extends AppController
         return $this->redirect(array('action' => 'index'));
     }
 
+    
+    /**
+     * start method
+     *
+     * @return void
+     */
+    public function start()
+    {
+        if ($this->request->is('post')) {
+            $this->Chat->create();
+            if ($this->Chat->save($this->request->data)) {
+                $this->Session->setFlash(__('The chat has been saved.'), 'success');
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The chat could not be saved. Please, try again.'), 'error');
+            }
+        }
+    }
 }
