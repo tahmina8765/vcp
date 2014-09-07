@@ -39,5 +39,5 @@
 </script>
 
 <div>
-    <?php echo $this->Html->link('archive', array('plugin' => '', 'controller' => 'chats', 'action' => 'archive', $chat['Chat']['sessionid']));?>
+    <?php echo $this->Html->link('archive', array('plugin' => '', 'controller' => 'chats', 'action' => 'archive', $chat['Chat']['id']), array('target' => '_blank'));?>
 </div>
