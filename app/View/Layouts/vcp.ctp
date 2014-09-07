@@ -42,6 +42,14 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
     </head>
     <body>
         <div id="container">
+            <?php
+                    $userId = AuthComponent::user('id');
+                    if (!empty($userId)) {
+                        echo $this->Html->link('Logout', array('plugin' => 'cauth', 'controller' => 'users', 'action' => 'logout'));
+                    }else{
+                        echo $this->Html->link('Login', array('plugin' => 'cauth', 'controller' => 'users', 'action' => 'login'));
+                    }
+                    ?>
             <div id="main-content">
                 <div class="row">
                     <div class="column large-12">
