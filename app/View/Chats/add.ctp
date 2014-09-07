@@ -4,11 +4,11 @@
         <fieldset>
             <legend><?php echo __('Add Chat'); ?></legend>
 <?php
-echo $this->Form->input('name');
-echo $this->Form->input('email');
-echo $this->Form->input('keywords');
-echo $this->Form->input('reason');
-echo $this->Form->input('agent_id');
+//echo $this->Form->input('name');
+//echo $this->Form->input('email');
+//echo $this->Form->input('keywords');
+//echo $this->Form->input('reason');
+//echo $this->Form->input('agent_id');
 ?>
         </fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -25,7 +25,6 @@ echo $this->Form->input('agent_id');
 </div>-->
 
 <div class="row">
-
     <div class="large-6 columns large-centered">        
         <h1 class="centered-text">Start Chat</h1>
         <p class="centered-text"><i>Please give us some information so we can best serve you!</i></p>

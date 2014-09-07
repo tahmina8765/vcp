@@ -1,8 +1,13 @@
 <script type="text/javascript" charset="utf-8">
+    function closeEditorWarning() {
+        return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
+    }
+    window.onbeforeunload = closeEditorWarning;
+
     var apiKey = '44966052';
     var sessionid = '<?php echo $chat['Chat']['sessionid']; ?>';
     var token = '<?php echo $chat['Chat']['token']; ?>';
-    
+
     TB.addEventListener("exception", exceptionHandler);
     var session = TB.initSession(sessionid); // Replace with your own session ID. See https://dashboard.tokbox.com/projects
     TB.setLogLevel(TB.DEBUG);
