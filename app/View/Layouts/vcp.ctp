@@ -24,6 +24,7 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
         <?php
         echo $this->Html->meta('icon');
         echo $this->Html->css('foundation.css');
+        echo $this->Html->css('marketing.css');
         echo $this->Html->script('vendor/modernizr.js');
         echo $this->Html->script('vendor/jquery.js');
         echo $this->Html->script('foundation.min.js');
@@ -36,11 +37,12 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script>
             $(document).foundation();
         </script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700"/>
         <script src="http://static.opentok.com/webrtc/v2.0/js/TB.min.js" type="text/javascript" charset="utf-8"></script>        
     </head>
     <body>
         <div id="container">
-            <div id="content">
+            <div id="main-content">
                 <?php echo $this->Session->flash(); ?>             
                 <?php echo $this->fetch('content'); ?>
             </div>

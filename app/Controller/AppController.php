@@ -33,6 +33,7 @@ App::path('Vendor');
  */
 class AppController extends Controller
 {
+    public $layout = 'vcp';
     public $helpers    = array('Form', 'Time', 'Html', 'Session', 'Js');
     public $counter    = 0;
     public $components = array(
