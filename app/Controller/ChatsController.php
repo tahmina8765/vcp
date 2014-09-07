@@ -17,6 +17,12 @@ class ChatsController extends AppController
      * @var array
      */
     public $components = array('Paginator');
+    
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'view');
+    }
 
     /**
      * index method
