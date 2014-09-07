@@ -102,7 +102,7 @@ class ChatsController extends AppController
             $openTok                                  = new OpenTok\OpenTok($apiKey, $apiSecret);
             // Create a session that attempts to use peer-to-peer streaming:
             $options                                  = array(
-                'mediaMode' => MediaMode::ROUTED,
+                'mediaMode' => 'disabled',
                 'location'  => $location
             );
             $session                                  = $openTok->createSession($options);
