@@ -65,15 +65,15 @@ class ChatsController extends AppController
         if (!$this->Chat->exists($id)) {
             throw new NotFoundException(__('Invalid chat'));
         }
-        $options = array('conditions' => array('Chat.' . $this->Chat->primaryKey => $id));
-        $chat = $this->Chat->find('first', $options);
+        $options   = array('conditions' => array('Chat.' . $this->Chat->primaryKey => $id));
+        $chat      = $this->Chat->find('first', $options);
         $sessionId = $chat['Chat']['sessionid'];
-        
+
         $apiKey    = Configure::read('Opentok.apikey');
         $apiSecret = Configure::read('Opentok.apisecret');
         $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
-        $archive = $openTok->startArchive($sessionId, "PHP Archiving Sample App");
-        
+        $archive   = $openTok->startArchive($sessionId, "PHP Archiving Sample App");
+
         $this->autoRender = false;
         $this->response->type('json');
         $return_data      = json_encode($archive);
@@ -96,11 +96,16 @@ class ChatsController extends AppController
         if ($this->request->is('post')) {
             $this->Chat->create();
 
+            $location                                 = Configure::read('Site.ip');
             $apiKey                                   = Configure::read('Opentok.apikey');
             $apiSecret                                = Configure::read('Opentok.apisecret');
             $openTok                                  = new OpenTok\OpenTok($apiKey, $apiSecret);
             // Create a session that attempts to use peer-to-peer streaming:
-            $session                                  = $openTok->createSession();
+            $options                                  = array(
+                'mediaMode' => MediaMode::ROUTED,
+                'location'  => $location
+            );
+            $session                                  = $openTok->createSession($options);
             $sessionId                                = $session->getSessionId();
             $token                                    = $openTok->generateToken($sessionId);
             $this->request->data['Chat']['sessionid'] = $sessionId;
