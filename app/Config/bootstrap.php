@@ -107,5 +107,6 @@ CakeLog::config('error', array(
 ));
 
 App::import('Vendor', array('file' => 'autoload'));
+CakePlugin::load('DebugKit');
 CakePlugin::load('Cauth');
 CakePlugin::load('AclExtras');

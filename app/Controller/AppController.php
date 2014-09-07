@@ -47,7 +47,8 @@ class AppController extends Controller
                 ),
             )
         ),
-        'Session'
+        'Session',
+        'DebugKit.Toolbar'
     );
 
     public function beforeFilter()
