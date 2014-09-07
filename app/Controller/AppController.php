@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -18,9 +19,9 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Controller', 'Controller');
 App::path('Vendor');
+
 /**
  * Application Controller
  *
@@ -30,5 +31,32 @@ App::path('Vendor');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
+    public $helpers    = array('Form', 'Time', 'Html', 'Session', 'Js');
+    public $counter    = 0;
+    public $components = array(
+        'RequestHandler',
+        'Acl',
+        'Auth' => array(
+            'authError' => 'Did you really think you are allowed to see that?',
+            'authorize' => array(
+                'Actions' => array(
+                    'actionPath' => 'controllers',
+                    'userModel'  => 'Cauth.User',
+                ),
+            )
+        ),
+        'Session'
+    );
+
+    public function beforeFilter()
+    {
+
+        //Configure AuthComponent
+        $this->Auth->loginAction    = array('plugin' => 'cauth', 'controller' => 'users', 'action' => 'login');
+        $this->Auth->logoutRedirect = array('plugin' => 'cauth', 'controller' => 'users', 'action' => 'login');
+        $this->Auth->loginRedirect  = array('plugin' => '', 'controller' => 'pages', 'action' => 'display');
+    }
+
 }
