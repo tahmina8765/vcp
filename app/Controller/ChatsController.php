@@ -73,7 +73,7 @@ class ChatsController extends AppController
         $apiSecret = Configure::read('Opentok.apisecret');
         $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
         $archive   = $openTok->startArchive($sessionId, "PHP Archiving Sample App" . $chat['Chat']['name']);
-        echo $archive->toJson();
+        print_r($archive->toJson());
         die();
         $this->autoRender = false;
         $this->response->type('json');
