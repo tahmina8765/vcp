@@ -384,4 +384,4 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
-Configure::write('Site.url', 'http://localhost/vcp/');
+Configure::write('Site.url', 'http://117.58.241.66:85/vcp/');
