@@ -384,4 +384,6 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
-Configure::write('Site.url', 'http://117.58.241.66:85/vcp/');
+Configure::write('Site.url', 'http://localhost/vcp/');
+Configure::write('Opentok.apikey', '44966052');
+Configure::write('Opentok.apisecret', '5e77f7d37adc91cade6dd1ee3d1016d715c42d18');

@@ -1,8 +1,8 @@
 <script type="text/javascript" charset="utf-8">
-    function closeEditorWarning() {
-        return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
-    }
-    window.onbeforeunload = closeEditorWarning;
+//    function closeEditorWarning() {
+//        return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
+//    }
+//    window.onbeforeunload = closeEditorWarning;
 
     var apiKey = '44966052';
     var sessionid = '<?php echo $chat['Chat']['sessionid']; ?>';
@@ -37,3 +37,7 @@
         alert(event.message);
     }
 </script>
+
+<div>
+    <?php echo $this->Html->link('archive', array('plugin' => '', 'controller' => 'chats', 'action' => 'archive', $chat['Chat']['sessionid']));?>
+</div>

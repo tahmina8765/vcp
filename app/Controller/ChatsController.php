@@ -17,11 +17,11 @@ class ChatsController extends AppController
      * @var array
      */
     public $components = array('Paginator');
-    
+
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'view');
+        $this->Auth->allow('add', 'view', 'archive');
     }
 
     /**
@@ -52,20 +52,38 @@ class ChatsController extends AppController
         $options = array('conditions' => array('Chat.' . $this->Chat->primaryKey => $id));
         $this->set('chat', $this->Chat->find('first', $options));
     }
+
     /**
-     * watch method
+     * archive method
      *
      * @throws NotFoundException
      * @param string $id
      * @return void
      */
-    public function watch($id = null)
+    public function archive($id = null)
     {
         if (!$this->Chat->exists($id)) {
             throw new NotFoundException(__('Invalid chat'));
         }
         $options = array('conditions' => array('Chat.' . $this->Chat->primaryKey => $id));
-        $this->set('chat', $this->Chat->find('first', $options));
+        $chat = $this->Chat->find('first', $options);
+        $sessionId = $chat['Chat']['sessionid'];
+        
+        $apiKey    = Configure::read('Opentok.apikey');
+        $apiSecret = Configure::read('Opentok.apisecret');
+        $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
+        $archive = $openTok->startArchive($sessionId, "PHP Archiving Sample App");
+        
+        $this->autoRender = false;
+        $this->response->type('json');
+        $return_data      = json_encode($archive);
+        $this->response->body($return_data);
+
+
+
+//        $archive = $app->opentok->startArchive($sessionId, "PHP Archiving Sample App");
+//        $app->response->headers->set('Content-Type', 'application/json');
+//        echo $archive->toJson();
     }
 
     /**
@@ -78,15 +96,15 @@ class ChatsController extends AppController
         if ($this->request->is('post')) {
             $this->Chat->create();
 
-            $apiKey    = '44966052';
-            $apiSecret = '5e77f7d37adc91cade6dd1ee3d1016d715c42d18';
-            $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
+            $apiKey                                   = Configure::read('Opentok.apikey');
+            $apiSecret                                = Configure::read('Opentok.apisecret');
+            $openTok                                  = new OpenTok\OpenTok($apiKey, $apiSecret);
             // Create a session that attempts to use peer-to-peer streaming:
-            $session   = $openTok->createSession();
-            $sessionId = $session->getSessionId();
-            $token     = $openTok->generateToken($sessionId);
+            $session                                  = $openTok->createSession();
+            $sessionId                                = $session->getSessionId();
+            $token                                    = $openTok->generateToken($sessionId);
             $this->request->data['Chat']['sessionid'] = $sessionId;
-            $this->request->data['Chat']['token'] = $token;
+            $this->request->data['Chat']['token']     = $token;
             //debug($this->request->data);
             if ($this->Chat->save($this->request->data)) {
                 $id = $this->Chat->getLastInsertId();
@@ -157,4 +175,5 @@ class ChatsController extends AppController
         }
         return $this->redirect(array('action' => 'index'));
     }
+
 }
