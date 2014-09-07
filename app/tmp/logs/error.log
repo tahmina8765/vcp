@@ -7,3 +7,13 @@ Request URL: /vcp/expertise
 Stack Trace:
 #0 D:\xampp\htdocs\vcp\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-09-07 04:13:47 Error: Fatal Error (1): Class 'MediaMode' not found in [/var/www/vcp/app/Controller/ChatsController.php, line 105]
+2014-09-07 04:13:47 Error: [FatalErrorException] Class 'MediaMode' not found
+Request URL: /vcp/chats/add
+Stack Trace:
+#0 /var/www/vcp/lib/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'MediaMod...', '/var/www/vcp/ap...', 105)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'MediaMod...', '/var/www/vcp/ap...', 105, Array)
+#2 /var/www/vcp/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'MediaMod...', '/var/www/vcp/ap...', 105, Array)
+#3 /var/www/vcp/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
