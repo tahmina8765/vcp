@@ -71,15 +71,36 @@ class ChatsController extends AppController
     {
         if ($this->request->is('post')) {
             $this->Chat->create();
+
+            $apiKey    = '44966052';
+            $apiSecret = '5e77f7d37adc91cade6dd1ee3d1016d715c42d18';
+            $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
+            // Create a session that attempts to use peer-to-peer streaming:
+            $session   = $openTok->createSession();
+            $sessionId = $session->getSessionId();
+            $token     = $openTok->generateToken($sessionId);
+            $this->request->data['Chat']['sessionid'] = $sessionId;
+            $this->request->data['Chat']['token'] = $token;
+            //debug($this->request->data);
             if ($this->Chat->save($this->request->data)) {
-                $this->Session->setFlash(__('The chat has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                $id = $this->Chat->getLastInsertId();
+                $this->Session->setFlash(__('The chat has been saved.'), 'success');
+                return $this->redirect(array('action' => 'view', $id));
             } else {
-                $this->Session->setFlash(__('The chat could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The chat could not be saved. Please, try again.'), 'error');
             }
         }
-        $agents = $this->Chat->Agent->find('list');
-        $this->set(compact('agents'));
+//        if ($this->request->is('post')) {
+//            $this->Chat->create();
+//            if ($this->Chat->save($this->request->data)) {
+//                $this->Session->setFlash(__('The chat has been saved.'));
+//                return $this->redirect(array('action' => 'index'));
+//            } else {
+//                $this->Session->setFlash(__('The chat could not be saved. Please, try again.'));
+//            }
+//        }
+//        $agents = $this->Chat->Agent->find('list');
+//        $this->set(compact('agents'));
     }
 
     /**
@@ -129,35 +150,5 @@ class ChatsController extends AppController
             $this->Session->setFlash(__('The chat could not be deleted. Please, try again.'));
         }
         return $this->redirect(array('action' => 'index'));
-    }
-
-    /**
-     * start method
-     *
-     * @return void
-     */
-    public function start()
-    {
-        if ($this->request->is('post')) {
-            $this->Chat->create();
-
-            $apiKey    = '44966052';
-            $apiSecret = '5e77f7d37adc91cade6dd1ee3d1016d715c42d18';
-            $openTok   = new OpenTok\OpenTok($apiKey, $apiSecret);
-            // Create a session that attempts to use peer-to-peer streaming:
-            $session   = $openTok->createSession();
-            $sessionId = $session->getSessionId();
-            $token     = $openTok->generateToken($sessionId);
-            $this->request->data['Chat']['sessionid'] = $sessionId;
-            $this->request->data['Chat']['token'] = $token;
-            //debug($this->request->data);
-            if ($this->Chat->save($this->request->data)) {
-                $id = $this->Chat->getLastInsertId();
-                $this->Session->setFlash(__('The chat has been saved.'), 'success');
-                return $this->redirect(array('action' => 'view', $id));
-            } else {
-                $this->Session->setFlash(__('The chat could not be saved. Please, try again.'), 'error');
-            }
-        }
     }
 }

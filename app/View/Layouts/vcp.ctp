@@ -25,6 +25,7 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->meta('icon');
         echo $this->Html->css('foundation.css');
         echo $this->Html->css('marketing.css');
+        echo $this->Html->css('style.css');
         echo $this->Html->script('vendor/modernizr.js');
         echo $this->Html->script('vendor/jquery.js');
         echo $this->Html->script('foundation.min.js');
@@ -43,7 +44,11 @@ $cakeVersion     = __d('cake_dev', 'CakePHP %s', Configure::version())
     <body>
         <div id="container">
             <div id="main-content">
-                <?php echo $this->Session->flash(); ?>             
+                <div class="row">
+                    <div class="column large-12">
+                        <?php echo $this->Session->flash(); ?>  
+                    </div>
+                </div>
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>
